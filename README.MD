@@ -67,10 +67,10 @@ Here's what's planned for Trainlytics in upcoming updates:
 
 ### 🔹 Core Backend
 
-- ✅ Modular C++ project setup
-- ✅ Routine creation and JSON saving
-- ✅ Workout logging with reps per set and notes
-- ✅ Auto date-stamping with `<chrono>`
+- [x] Modular C++ project setup
+- [x] Routine creation and JSON saving
+- [x] Workout logging with reps per set and notes
+- [x] Auto date-stamping with `<chrono>`
 - [ ] Add support for logging **weights per set**
 - [ ] CLI-based routine selector & input logger
 - [ ] Load existing logs and compare over time
