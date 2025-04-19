@@ -6,6 +6,7 @@
 /*.cmake
 /*.o
 /*.a
+/logo/
 
 # VSCode settings (optional)
 .vscode/
