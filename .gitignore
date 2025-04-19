@@ -1,0 +1,23 @@
+# Build & IDE artifacts
+/build/
+/CMakeFiles/
+/Makefile
+/CMakeCache.txt
+/*.cmake
+/*.o
+/*.a
+
+# VSCode settings (optional)
+.vscode/
+
+# Executables
+trainlytics
+
+# Data logs and runtime output
+data/logs/
+*.json
+!data/routines/*.json  # OPTIONAL: keep saved routines only
+
+# OS stuff
+.DS_Store
+Thumbs.db
