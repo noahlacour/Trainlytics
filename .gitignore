@@ -22,3 +22,7 @@ data/logs/
 # OS stuff
 .DS_Store
 Thumbs.db
+
+# Generated AI prompt files
+/scripts/
+/prompts/
