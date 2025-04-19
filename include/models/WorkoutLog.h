@@ -12,6 +12,7 @@ struct WorkoutLog
     {
         Exercise exercise;
         std::vector<int> repsPerSet;
+        std::vector<float> weightPerSet;
         std::string notes;
     };
 
@@ -23,13 +24,14 @@ using json = nlohmann::json;
 
 inline void to_json(json& j, const WorkoutLog::LoggedExercise& le)
 {
-    j = json{{"exercise", le.exercise}, {"repsPerSet", le.repsPerSet}, {"notes", le.notes}};
+    j = json{{"exercise", le.exercise}, {"repsPerSet", le.repsPerSet}, {"weightPerSet", le.weightPerSet}, {"notes", le.notes}};
 }
 
 inline void from_json(const json& j, WorkoutLog::LoggedExercise& le)
 {
     j.at("exercise").get_to(le.exercise);
     j.at("repsPerSet").get_to(le.repsPerSet);
+    j.at("weightPerSet").get_to(le.weightPerSet);
     j.at("notes").get_to(le.notes);
 }
 

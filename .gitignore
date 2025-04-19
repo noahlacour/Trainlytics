@@ -18,6 +18,8 @@ trainlytics
 data/logs/
 *.json
 !data/routines/*.json  # OPTIONAL: keep saved routines only
+data/routines/
+
 
 # OS stuff
 .DS_Store
