@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/Trainlytics_Logo.jpg" alt="Trainlytics Logo" width="338"/>
+    <img src="assets/Trainlytics_Logo.png" alt="Trainlytics Logo" width="338"/>
 </p>
 
 <h1 align="center">Trainlytics</h1>
