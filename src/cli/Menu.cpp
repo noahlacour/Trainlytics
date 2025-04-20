@@ -13,12 +13,18 @@ namespace fs = std::filesystem;
 
 namespace CLI
 {
+    /**
+     * @brief Lists all saved Routines to command line.
+     * @param directory The directory to search for valid JSON files.
+     */
     void listRoutines(const std::string& directory)
     {
         std::cout << "\nAvailable Routines:\n";
         int index = 1;
+        // Index through all valid sub-directories & files of directory.
         for(const auto& entry : fs::directory_iterator(directory))
         {
+            // Only display if file found is of JSON type.
             if (entry.path().extension() == ".json")
             {
                 std::cout << " [" << index++ << "] " << entry.path().stem().string() << "\n";
@@ -26,23 +32,32 @@ namespace CLI
         }
     }
 
+    /**
+     * @brief Allows user to select a routine to load.
+     * @param directory The directory where the Routine JSON file is located.
+     */
     std::string selectRoutine(const std::string& directory)
     {
+        // Index through all valid sub-directories & files of directory.
         std::vector<std::string> files;
         for(const auto& entry : fs::directory_iterator(directory))
         {
+            // Only add to list for potential selection if found file is of JSON type.
             if(entry.path().extension() == ".json")
             {
                 files.push_back(entry.path().filename().string());
             }
         }
 
+
         if (files.empty())
         {
+            // if not files are found alert user and return.
             std::cout << "No routines found.\n";
             return "";
         }
 
+        // Allow user to select a Routine by inputing the number corresponding to wanted listed Routine.
         int choice = -1;
         while (choice < 1 || choice > static_cast<int>(files.size()))
         {
@@ -54,12 +69,17 @@ namespace CLI
         return files[choice - 1];
     }
 
+    /**
+     * @brief Allows user to log: reps, sets, and notes for Exercises in a given Routine.
+     * @param routine The Routine in which the logs belong.
+     */
     void logRoutine(const Routine& routine)
     {
         WorkoutLog log;
         log.routineName = routine.getName();
         log.date = getCurrentDate();
 
+        // Alert user that the Routine is being logged, and parse Exercises in Routine
         std::cout << "\nLogging for routine: " << routine.getName() << "\n";
         for(const auto& entry : routine.getExercises())
         {
@@ -67,6 +87,7 @@ namespace CLI
             std::vector<float> weights;
             std::cout << "\n" << entry.exercise.name << " (" << entry.plannedSets << " sets:\n";
 
+            // Let user input from CLI their specific reps and weights for each set.
             for(int i = 0; i < entry.plannedSets; ++i)
             {
                 int rep;
@@ -80,6 +101,7 @@ namespace CLI
                 weights.push_back(weight);
             }
 
+            // Allow user to input notes for Exercises completed during this log. 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std:: string notes;
             std::cout << "Notes: ";
@@ -88,12 +110,17 @@ namespace CLI
             log.exercises.push_back({entry.exercise, reps, weights, notes});
         }
 
+        // Now serialize and save log to a JSON file.
         WorkoutLogSerializer::saveToFile(log);
         std::cout << "\n Workout saved for " << log.date << "\n";
     }
 
+    /**
+     * @brief Allows a user to create a new Routine from the CLI.
+     */
     void createRoutine()
     {
+        // Create the Routines directory location and prompt user for Routine name.
         std::string routineDir = std::string(PROJECT_SOURCE_DIR) + "/data/routines";
         std::string name;
         std::cout << "\nEnter a name for the new routine: ";
@@ -102,6 +129,7 @@ namespace CLI
         Routine routine(name);
         bool adding = true;
 
+        // Allow the user to add Exercises, sets, and reps to Routine while adding is true.
         while (adding)
         {
             std::string exName, muscleGroup, equipment;
@@ -128,23 +156,28 @@ namespace CLI
             adding = (cont == "y" || cont == "Y");
         }
 
+        // Initalize JSON file.
         std::string filename = name;
         std::replace(filename.begin(), filename.end(), ' ', '_');
         filename += ".json";
 
+        // Save new Routine to JSON file.
         RoutineSerializer::saveToFile(routine, routineDir + "/" + filename);
         std::cout << "\n Routine '" << name << "' saved as " << filename << '\n';
     }
 
     void run()
     {
+        // Load saved Routines.
         std::string routineDir = std::string(PROJECT_SOURCE_DIR) + "/data/routines";
 
+        // if no Routines sub-directory exists, create it.
         if(!fs::exists(routineDir))
         {
             fs::create_directories(routineDir);
         }
 
+        // Create inital CLI startup graphics.
         std::cout << R"(
             _______  ______    _______  ___   __    _  ___      __   __  _______  ___   _______  _______    
            |       ||    _ |  |   _   ||   | |  |  | ||   |    |  | |  ||       ||   | |       ||       |   
@@ -165,6 +198,7 @@ namespace CLI
         std::cin >> choice;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+        // Handle User CLI traversal.
         switch(choice)
         {
             case 1:

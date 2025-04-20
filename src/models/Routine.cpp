@@ -1,5 +1,6 @@
 #include "models/Routine.h"
 
+// Construct Routine.
 Routine::Routine(const std::string& name) : name(name) {}
 
 void Routine::addExercise(const Exercise& exercise, int sets, int reps)
