@@ -18,7 +18,7 @@ static fs::path getProjectRootPath()
 */
 static fs::path getDataPath(const std::string& filename)
 {
-    fs::path dataDir = getProjectRootPath() / "data";
+    fs::path dataDir = getProjectRootPath() / "data" / "routines";
 
     // Confirm the path created exists
     if (!fs::exists(dataDir))
