@@ -65,28 +65,35 @@ make
 
 Here's what's planned for Trainlytics in upcoming updates:
 
-### 🔹 Core Backend
+### 🔧 Core Backend
 
-- [x] Modular C++ project setup
-- [x] Routine creation and JSON saving
-- [x] Workout logging with reps per set and notes
-- [x] Auto date-stamping with `<chrono>`
-- [ ] Add support for logging **weights per set**
-- [ ] CLI-based routine selector & input logger
-- [ ] Load existing logs and compare over time
+- [x] ✅ Modular C++ project structure with CMake
+- [x] ✅ Create and serialize routines (JSON-based)
+- [x] ✅ Log reps **and weights per set** with notes
+- [x] ✅ Timestamp workouts using `<chrono>`
+- [x] ✅ Unit tests using Doctest
+- [x] ✅ Add CLI test mode with `--log` flag
+- [ ] ⌨️ Interactive CLI routine selector and logger
+- [ ] 📂 Load and compare historical logs
+- [ ] 📊 JSON-based progress analysis interface
 
-### 🔹 Advanced Features
+---
 
-- [ ] Visualize progress with terminal/graphing tools
-- [ ] Create REST API layer for frontend communication
-- [ ] Add unit testing and CI/CD support
+### 🚀 Advanced Features
 
-### 🔹 Frontend & Cross-Platform Goals
+- [ ] 📈 Terminal graphing (weights/reps over time)
+- [ ] 🌐 REST API layer for future frontend integration
+- [ ] 🧪 GitHub Actions CI for builds and test coverage
+- [ ] 🧰 Export workouts (CSV, Markdown, JSON)
 
-- [ ] Build basic CLI menu interface
-- [ ] Mobile app frontend (Flutter/React Native)
-- [ ] User accounts or profiles (multi-user support)
-- [ ] Cloud sync / export options
+---
+
+### 🖥️ Frontend & Cross-Platform Vision
+
+- [ ] 🧭 Menu-driven CLI interface
+- [ ] 📱 Mobile app frontend (Flutter or React Native)
+- [ ] 👥 Multi-user support (profiles/workout history)
+- [ ] ☁️ Cloud sync, backup & export options (e.g., Dropbox/GitHub)
 
 
 
