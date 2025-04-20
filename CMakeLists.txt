@@ -40,9 +40,14 @@ add_definitions(-DPROJECT_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_executable(trainlytics_tests
     tests/test_routine.cpp
 
-    # Add sources needed for testing
+    # Models
     src/models/Exercise.cpp
     src/models/Routine.cpp
+
+    # Utils used by tests
+    src/utils/RoutineSerializer.cpp
+    src/utils/WorkoutLogSerializer.cpp
+    src/utils/DateTimeUtils.cpp
 )
 
 target_include_directories(trainlytics_tests PRIVATE

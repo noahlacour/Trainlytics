@@ -229,3 +229,8 @@ namespace CLI
         }
     }
 }
+
+void logRoutine(const Routine& routine)
+{
+    
+}
